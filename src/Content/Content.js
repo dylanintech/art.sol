@@ -55,15 +55,16 @@ const Content = () => {
                  </div>
               </a>   
             </div>
-            {posts.map((post, index) => (
+            {posts.filter(post => post.account.title != "BAYC #197" && post.account.cta != "https://twitter.com/dxlantxch").map((post, index) => (
                  <div className=" w-1/2 p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-3xl m-6">
                  <a className="block p-6 bg-white sm:p-8 rounded-3xl text-black flex" href="">
                     <div className="sm:pr-1">
                         <h1 className="text-2xl mb-3 font-bold">{post.account.title}</h1>
                         {/* <h1 className="text-9xl">🖼️</h1> */}
-                        <img src={post.account.artwork}>
-
-                        </img>
+                        <a href={post.account.artwork} target="_blank" rel='noreferrer'>
+                            <img  className="shadow-2xl rounded-sm h-auto max-w-full " src={post.account.artwork}>
+                            </img>
+                        </a>
                     </div>
                     <div className="text-center m-2">
                         <h3 className="font-bold">Created by {shortenAddress(post.publicKey.toString())}</h3> 

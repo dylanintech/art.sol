@@ -64,19 +64,22 @@ const Header = () => {
 
       <h1 className="font-bold text-8xl mx-4 pl-28">art.sol</h1>
       {walletAddress ?  
-      <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6">
+      <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6 p-2">
           <h3>Connected ✅</h3>
           <p>{shortenAddress(walletAddress)}</p>
       </div> 
         :
-      <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6">
+      <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6 p-2">
         <h3>Not Connected</h3>
       </div>
         }
       <div className="flex justify-between w-1/8 text-white ml-6">
-        <BsGithub className="text-4xl" />
-        <BsTwitter className='text-4xl'/>
-        <FaDiscord className='text-4xl'/>
+        <a href="https://twitter.com/art__sol" target="_blank" rel="noreferrer">
+          <BsTwitter className='text-4xl'/>
+        </a>
+        <a href="https://discord.gg/MnJ2f7Xt" target="_blank" rel="noreferrer">
+          <FaDiscord className='text-4xl'/>
+        </a>
       </div>
     </div>
     {!walletAddress ? 

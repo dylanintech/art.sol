@@ -1,0 +1,107 @@
+{
+    "version": "0.1.0",
+    "name": "artsolbackend",
+    "instructions": [
+      {
+        "name": "submitPost",
+        "accounts": [
+          {
+            "name": "post",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "creator",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "artwork",
+            "type": "string"
+          },
+          {
+            "name": "cta",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "accounts": [
+      {
+        "name": "Post",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "creator",
+              "type": "publicKey"
+            },
+            {
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "name": "artwork",
+              "type": "string"
+            },
+            {
+              "name": "points",
+              "type": "i64"
+            },
+            {
+              "name": "stars",
+              "type": "u64"
+            },
+            {
+              "name": "cta",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "TitleTooLong",
+        "msg": "The provided title should be 50 characters maximum!"
+      },
+      {
+        "code": 6001,
+        "name": "DescriptionTooLong",
+        "msg": "The provided description should be 280 characters maximum!"
+      },
+      {
+        "code": 6002,
+        "name": "ArtworkTooLong",
+        "msg": "The provided artwork file should have a link that's 100 characters maximum!"
+      },
+      {
+        "code": 6003,
+        "name": "CTATooLong",
+        "msg": "The provided CTA link shouls be a maximum of 150 characters!"
+      }
+    ],
+    "metadata": {
+      "address": "8oMdunAFJKYeLDwHa2KrhyNGvbLqk4uB3iC6g4nifuCm"
+    }
+}

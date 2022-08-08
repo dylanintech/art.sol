@@ -67,7 +67,7 @@ const Content = () => {
                         </a>
                     </div>
                     <div className="text-center m-2">
-                        <h3 className="font-bold">Created by {shortenAddress(post.publicKey.toString())}</h3> 
+                        <h3 className="font-bold">Created by {shortenAddress(post.account.creator.toString())}</h3> 
                         <p className='my-2'>{post.account.description}</p>
                         <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-4">
                            TIP

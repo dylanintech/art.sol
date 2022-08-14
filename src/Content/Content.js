@@ -3,9 +3,14 @@ import { BiUpvote, BiDownvote } from 'react-icons/bi';
 import { FiStar } from 'react-icons/fi';
 import { fetchPosts } from '../Solana/Solana';
 import { shortenAddress } from '../util';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggle, selectTippingBool } from '../app/Slices/tippingSlice';
+import { selectReceiver } from '../app/Slices/receiverAddressSlice';
 
 const Content = () => {
     const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
+    const tipping = useSelector(selectTippingBool);
 
     const getPosts = async () => {
         try {
@@ -32,8 +37,8 @@ const Content = () => {
                  </div>
                  <div className="text-center">
                      <h3 className="font-bold">Created by ------</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                     <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-3">
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span className='font-bold block'> **This is an example post! You can't interact with it.**</span></p>
+                     <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-3 shadow-lg shadow-red-500">
                         TIP
                      </button>
                      <div className="w-full flex justify-evenly pt-3 pl-2">
@@ -55,7 +60,7 @@ const Content = () => {
                  </div>
               </a>   
             </div>
-            {posts.filter(post => post.account.title != "BAYC #197" && post.account.cta != "https://twitter.com/dxlantxch").map((post, index) => (
+            {posts.filter(post => post.account.title != "BAYC #197" && post.account.cta != "https://twitter.com/dxlantxch" && post.account.description != "This is a cool sunflower that my sister made when she was like 4.").map((post, index) => (
                  <div className=" w-1/2 p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-3xl m-6">
                  <a className="block p-6 bg-white sm:p-8 rounded-3xl text-black flex" href="">
                     <div className="sm:pr-1">
@@ -69,19 +74,37 @@ const Content = () => {
                     <div className="text-center m-2">
                         <h3 className="font-bold">Created by {shortenAddress(post.account.creator.toString())}</h3> 
                         <p className='my-2'>{post.account.description}</p>
-                        <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-4">
+                        <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-4 shadow-lg hover:shadow-xl hover:shadow-red-500 shadow-red-500" 
+                        onClick={(event) => {
+                            event.preventDefault();
+                            dispatch(toggle());
+                            console.log(tipping);
+                            dispatch(selectReceiver(post.account.creator.toString()));
+                        }}
+                        >
                            TIP
                         </button>
                         <div className="w-full flex justify-evenly pt-3 pl-2 my-4">
                             <div className="flex">
                               <div>  
-                                 <BiUpvote className="text-xl"/>
-                                 <BiDownvote className="text-xl"/>
+                                 <BiUpvote className="text-xl" onClick={(event) => {
+                                     event.preventDefault();
+                                     window.alert("You'll be able to upvote posts soon!");
+                                 }}/>
+                                 <button onClick={(event) => {
+                                     event.preventDefault();
+                                     window.alert("You'll be able to downvote posts soon!")
+                                 }}>
+                                     <BiDownvote className="text-xl"/>
+                                 </button>
                               </div>
                               <p className="text-gray-600 pt-1 pl-1">{post.account.points.toString()}</p>
                             </div>
                             <div className="flex">
-                                 <FiStar className='text-4xl'/>
+                                 <FiStar className='text-4xl' onClick={(event) => {
+                                     event.preventDefault();
+                                     window.alert("You'll be able to favorite posts soon!");
+                                 }}/>
                                  <p className="text-gray-600 pt-1 pl-1">{post.account.stars.toString()}</p>
                             </div>
                             {post.account.cta ? 

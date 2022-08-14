@@ -3,7 +3,9 @@ import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 import { Program, web3 } from '@project-serum/anchor';
 import kp from '../keypair.json';
 import idl from '../idl.json';
+import { shortenAddress } from '../util';
 const anchor = require('@project-serum/anchor');
+
 
 const { SystemProgram } = web3;
 
@@ -92,4 +94,25 @@ export const fetchPosts = async () => {
 
     const postAccounts = await program.account.post.all();
     return postAccounts;
+}
+
+export const sendSol = async (receiverAddress, tipAmount) => {
+  try {
+    const provider = getProvider();
+    const program = new Program(idl, programID, provider);
+    const lamportAmount = tipAmount * 1e9;
+    const amount = new anchor.BN(lamportAmount);
+
+    await program.methods
+    .sendSol(amount)
+    .accounts({
+      from: provider.wallet.publicKey,
+      to: receiverAddress,
+      systemProgram: SystemProgram.programId,
+    })
+    .rpc();
+    window.alert("Successfully sent SOL💸!");
+  } catch (error) {
+    window.alert("Failed to send SOL!");
+  }
 }

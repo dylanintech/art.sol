@@ -58,11 +58,21 @@ const Header = () => {
    <> 
     <div className="bg-white dark:bg-black text-black dark:text-white flex justify-center items-center h-40"> 
       <div className="flex w-1/6">
-         <CgProfile className="text-4xl"/>
-         <FiStar className="text-4xl"/>
+         <button onClick={(event) => {
+           event.preventDefault();
+           window.alert("Profiles Coming Soon!")
+         }}>
+           <CgProfile className="text-4xl"/>
+         </button>
+         <button onClick={(event) => {
+           event.preventDefault();
+           window.alert("Favorites Coming Soon!")
+         }}>
+           <FiStar className="text-4xl"/>
+         </button>
       </div>
 
-      <h1 className="font-bold text-8xl mx-4 pl-28">art.sol</h1>
+      <h1 className="font-bold text-8xl mx-4 pl-28 bg-clip-text text-transparent bg-gradient-to-tr from-fuchsia-500 to-yellow-500">art.sol</h1>
       {walletAddress ?  
       <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6 p-2">
           <h3>Connected ✅</h3>
@@ -70,7 +80,7 @@ const Header = () => {
       </div> 
         :
       <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6 p-2">
-        <h3>Not Connected</h3>
+        <h3>Not Connected ❌</h3>
       </div>
         }
       <div className="flex justify-between w-1/8 text-white ml-6">
@@ -91,7 +101,7 @@ const Header = () => {
         connectWallet();
       }}
       >
-        Connect Wallet to Post, Tip, and be Tipped
+        Connect Phantom Wallet to Post, Tip, and be Tipped 😁
       </button>
     </div>
     :
@@ -105,7 +115,7 @@ const Header = () => {
         
       }}
       >
-        Post My Art!
+        Post My Art 🎨
       </button>
     </div>
      } 

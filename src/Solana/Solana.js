@@ -15,7 +15,7 @@ const baseAccount = web3.Keypair.fromSecretKey(secret);
 
 export const programID = new PublicKey(idl.metadata.address);
 
-export const network = clusterApiUrl('devnet'); 
+export const network = clusterApiUrl('mainnet-beta'); 
 
 export const opts = {
     preflightCommitment: "processed",

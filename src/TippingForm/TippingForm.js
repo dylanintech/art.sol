@@ -17,7 +17,7 @@ const TipForm = () => {
 
   return (
     <div className="dark:text-white dark:bg-black text-center">
-    <h1 className="py-6 mb-3 font-bold text-2xl ">How much SOL do you want to tip?</h1>
+    <h1 className="py-6 mb-3 font-bold text-xl ">How much SOL do you want to tip?</h1>
     <form onSubmit={(event) => {
       event.preventDefault()
       sendSol(receiver, tipAmount);
@@ -37,7 +37,7 @@ const TipForm = () => {
        required
       />
       <br />
-      <button type="submit" className=" border-black border-2 rounded-lg w-1/3 bg-gradient-to-br from-button-gradient-start via-button-gradient-end to-black bg-gradient-to-r hover:bg-gradient-to-tl p-3 my-3">Tip SOL 💸</button>
+      <button type="submit" className=" border-black border-2 rounded-lg w-1/3 p-3 my-3 bg-white"><p className=' font-bold bg-clip-text text-transparent bg-gradient-to-tr from-fuchsia-500 to-yellow-500'>Tip SOL 💸</p></button>
     </form>
     <br />
     <button onClick={(event) => {

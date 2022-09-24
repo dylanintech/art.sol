@@ -28,18 +28,16 @@ const Content = () => {
       }, []);
 
     return (
-        <div className="flex flex-col items-center dark:bg-black dark:text-white bg-white text-black">
-            <div className=" w-1/2 p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-3xl m-6">
-              <a className="block p-6 bg-white sm:p-8 rounded-3xl text-black flex" href="">
-                 <div className="sm:pr-1">
-                     <h1 className="text-2xl mb-3 font-bold">Artwork Title</h1>
-                     <h1 className="text-9xl">🖼️</h1>
-                 </div>
-                 <div className="text-center">
-                     <h3 className="font-bold">Created by ------</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span className='font-bold block'> **This is an example post! You can't interact with it.**</span></p>
-                     <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-3 shadow-lg shadow-red-500">
-                        TIP
+        <div className="flex flex-col items-center dark:bg-black dark:text-white bg-white text-black ">
+            <div className="md:w-1/2 p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-3xl m-6">
+              <a className="block p-6 bg-white sm:p-8 rounded-3xl text-black flex-col" href="">
+                     <h1 className="text-2xl mb-3 font-bold text-center">Artwork Title</h1>
+                     <h3 className="font-bold lg:text-center">Created by ------</h3>
+                     <h1 className="text-9xl my-2 lg:text-center">🖼️</h1>
+                     {/* used to be wrapped in a div ^ */}
+                     <p className="text-center pt-2 pb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span className='font-bold block'> **This is an example post! You can't interact with it.**</span></p>
+                     <button className="w-full border-black border-2 bg-black text-white rounded-lg p-2 my-3 shadow-lg shadow-red-500 lg:p-3 ">
+                        <p>Tip artist 💸</p>
                      </button>
                      <div className="w-full flex justify-evenly pt-3 pl-2">
                          <div className="flex">
@@ -57,24 +55,26 @@ const Content = () => {
                              CTA
                          </button>
                      </div>    
-                 </div>
+                
               </a>   
             </div>
             {posts.filter(post => post.account.title != "BAYC #197" && post.account.cta != "https://twitter.com/dxlantxch" && post.account.description != "This is a cool sunflower that my sister made when she was like 4.").map((post, index) => (
-                 <div className=" w-1/2 p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-3xl m-6">
-                 <a className="block p-6 bg-white sm:p-8 rounded-3xl text-black flex" href="">
-                    <div className="sm:pr-1">
-                        <h1 className="text-2xl mb-3 font-bold">{post.account.title}</h1>
-                        {/* <h1 className="text-9xl">🖼️</h1> */}
-                        <a href={post.account.artwork} target="_blank" rel='noreferrer'>
-                            <img  className="shadow-2xl rounded-sm h-auto max-w-full " src={post.account.artwork}>
+             <div className=" md:w-1/2 p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-3xl m-6">
+                 <a className="block bg-white sm:p-8 rounded-3xl text-black flex-col p-6" href="">
+                        <h1 className="text-2xl mb-3 font-bold text-center">{post.account.title}</h1>
+                        <h3 className="font-bold ">Created by {shortenAddress(post.account.creator.toString())}</h3> 
+                        {post.account.title != "Earth Mother // Mother Earth - FIRST EVER DEMO" ?
+                        <a href={post.account.artwork} target="_blank" rel='noreferrer' className="object-cover" >
+                            <img  className="shadow-2xl rounded-lg object-cover " src={post.account.artwork}>
                             </img>
+                        </a> :
+                        <a href={post.account.artwork} target="_blank" rel='noreferrer' className="m-0" >
+                          <img  className=" shadow-2xl rounded-lg m-0 " src='https://i.pinimg.com/564x/ff/86/78/ff867868807b83a768c2fb0f7e4172bd.jpg'>
+                          </img>
                         </a>
-                    </div>
-                    <div className="text-center m-2">
-                        <h3 className="font-bold">Created by {shortenAddress(post.account.creator.toString())}</h3> 
-                        <p className='my-2'>{post.account.description}</p>
-                        <button className="w-1/3 border-black border-2 bg-black text-white rounded-lg p-2 my-4 shadow-lg hover:shadow-xl hover:shadow-red-500 shadow-red-500" 
+                      }
+                        <p className='my-2 text-center pt-2'>{post.account.description}</p>
+                        <button className="w-full border-black border-2 bg-black text-white rounded-lg p-2 my-4 shadow-lg hover:shadow-xl hover:shadow-red-500 shadow-red-500 lg:p-3" 
                         onClick={(event) => {
                             event.preventDefault();
                             dispatch(toggle());
@@ -82,7 +82,7 @@ const Content = () => {
                             dispatch(selectReceiver(post.account.creator.toString()));
                         }}
                         >
-                           TIP
+                           Tip artist 💸
                         </button>
                         <div className="w-full flex justify-evenly pt-3 pl-2 my-4">
                             <div className="flex">
@@ -116,9 +116,8 @@ const Content = () => {
                             <>
 
                             </>
-}
-                        </div>    
-                    </div>
+                            }
+                        </div>     
                  </a>   
                </div>
             ))}

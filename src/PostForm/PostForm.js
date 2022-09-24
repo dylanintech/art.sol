@@ -16,7 +16,7 @@ const PostForm = () => {
 
 
   return (
-      <div className="dark:bg-black dark:text-white text-black bg-white text-center ">
+      <div className="dark:bg-black dark:text-white text-black bg-white text-center h-screen">
           <h1 className="py-5 mb-3 font-bold text-2xl ">Create Your Beautiful Post</h1>
           <form>
           <p><label for="title" className="mx-2">
@@ -92,7 +92,7 @@ const PostForm = () => {
           >
           </input>
           <br />
-          <button className=" border-black border-2 rounded-lg w-1/3 bg-gradient-to-br from-button-gradient-start via-button-gradient-end to-black bg-gradient-to-r hover:bg-gradient-to-tl p-3 my-3" type="submit" onClick={(event) => {
+          <button className="border-black border-2 rounded-lg w-1/3 p-3 my-3 bg-white" type="submit" onClick={(event) => {
               event.preventDefault();
               submitPost(title, description, artworkLink, ctaLink);
               dispatch(toggle());
@@ -101,7 +101,7 @@ const PostForm = () => {
           
           
           >
-              Post!
+              <p className='font-bold bg-clip-text text-transparent bg-gradient-to-tr from-fuchsia-500 to-yellow-500'>Post!</p>
           </button>
         </form>
         <br />
@@ -112,7 +112,7 @@ const PostForm = () => {
         }}
         
         >
-          <p className="text-white py-2 my-2">Go back</p>
+          <p className="text-white ">Go back</p>
           </button>
       </div>
    )

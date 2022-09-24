@@ -57,35 +57,31 @@ const Header = () => {
   return (
    <> 
     <div className="bg-white dark:bg-black text-black dark:text-white flex justify-center items-center h-40"> 
-      <div className="flex w-1/6">
+      <div className="w-1/6 sm:mr-2 ml-1 ">
          <button onClick={(event) => {
            event.preventDefault();
            window.alert("Profiles Coming Soon!")
          }}>
            <CgProfile className="text-4xl"/>
          </button>
-         <button onClick={(event) => {
-           event.preventDefault();
-           window.alert("Favorites Coming Soon!")
-         }}>
-           <FiStar className="text-4xl"/>
-         </button>
       </div>
-
-      <h1 className="font-bold text-8xl mx-4 pl-28 bg-clip-text text-transparent bg-gradient-to-tr from-fuchsia-500 to-yellow-500">art.sol</h1>
-      {walletAddress ?  
-      <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6 p-2">
-          <h3>Connected ✅</h3>
-          <p>{shortenAddress(walletAddress)}</p>
-      </div> 
-        :
-      <div className="border-white border-2 w-1/6 max-h-20 rounded-lg shadow-lg text-center ml-6 p-2">
-        <h3>Not Connected ❌</h3>
+      
+      {/* wrap header and connected button in a div so that they're stacked */}
+      <div className="sm:mr-4 md:mr-8">
+        <h1 className="mt-3 ml-2 sm:mr-2 md:text-8xl md:mr-10 lg:mr-28 lg:mt-8 font-bold text-7xl pt-4 pb-2  bg-clip-text text-transparent bg-gradient-to-tr from-fuchsia-500 to-yellow-500">art.sol</h1>
+        {walletAddress ?
+            <>
+            <h3 className="text-center ml-5 md:mr-10 lg:mr-32  ">Connected ✅</h3>
+            <p className="text-center pb-1 ml-5 md:mr-10 lg:mr-32 lg:pb-4">{shortenAddress(walletAddress)}</p>
+            </>
+        
+          :
+          <h3 className="text-center ml-5 md:mr-10 lg:mr-32">Not Connected ❌</h3>
+          }
       </div>
-        }
-      <div className="flex justify-between w-1/8 text-white ml-6">
+      <div className="flex justify-between w-1/8 text-white ml-6 sm:ml-4 pb-1">
         <a href="https://twitter.com/art__sol" target="_blank" rel="noreferrer">
-          <BsTwitter className='text-4xl'/>
+          <BsTwitter className='text-4xl display:none'/>
         </a>
         <a href="https://discord.gg/MnJ2f7Xt" target="_blank" rel="noreferrer">
           <FaDiscord className='text-4xl'/>
@@ -95,19 +91,19 @@ const Header = () => {
     {!walletAddress ? 
     <div className="text-center dark:bg-black  bg-white text-black  dark:text-white">
       <button 
-      className="border-white border-2 rounded-lg w-1/3 p-2 my-6 shadow-2xl hover:text-black hover:bg-white"
+      className="md:w-1/3 border-white border-2 rounded-xl w-1/2 p-1 shadow-2xl hover:text-black hover:bg-white text-black bg-white lg:text-white lg:bg-black lg:rounded-md lg:p-2 lg:my-4"
       onClick={(event) => {
         event.preventDefault();
         connectWallet();
       }}
       >
-        Connect Phantom Wallet to Post, Tip, and be Tipped 😁
+        Connect phantom wallet to post & tip 😁
       </button>
     </div>
     :
     <div className="text-center dark:bg-black  bg-white text-black  dark:text-white">
       <button 
-      className="border-white border-2 rounded-lg w-1/3 p-2 my-6 shadow-2xl hover:text-black hover:bg-white"
+      className="md:w-1/3 border-white border-2 rounded-xl w-1/2 p-1 mt-1 shadow-2xl hover:text-black hover:bg-white text-black bg-white lg:text-white lg:bg-black lg:rounded-md lg:p-2 lg:my-8"
       onClick={(event) => {
         event.preventDefault();
         dispatch(toggle());
